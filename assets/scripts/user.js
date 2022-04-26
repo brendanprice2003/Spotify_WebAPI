@@ -18,6 +18,7 @@ const AuthorizeUser = async () => {
     // Get code and save to localStorage
     const code = urlParams.get('code');
     localStorage.setItem('authCode', code);
+    log(code);
 
     // Make request data
     let formData = {
@@ -37,5 +38,5 @@ const AuthorizeUser = async () => {
 
 
 (async () => {
-    AuthorizeUser();
+    await AuthorizeUser();
 });
