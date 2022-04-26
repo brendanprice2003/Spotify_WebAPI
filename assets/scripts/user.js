@@ -15,7 +15,27 @@ log('// Welcome to Spotify Web API, Please report any errors to @beru2003 on Twi
 // Main funcs
 const AuthorizeUser = async () => {
 
-    
     // Get code and save to localStorage
-    // localStorage.setItem('authCode')
+    const code = urlParams.get('code');
+    localStorage.setItem('authCode', code);
+
+    // Make request data
+    let formData = {
+            code: code,
+            'redirect_uri': baseURI,
+            'grant_type': 'authorization_code'
+        },
+        headerData = {
+            'Authorization': `Basic ${btoa(`${clientId}:${clientSecret}`)}`
+        };
+
+    // Fetch access token
+    let AccessTokenRequest = await axios.get('https://accounts.spotify.com/api/token', formData, headerData);
+
+    log(AccessTokenRequest);
 };
+
+
+(async () => {
+    AuthorizeUser();
+});
