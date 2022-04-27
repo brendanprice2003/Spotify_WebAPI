@@ -17,7 +17,7 @@ log('// Welcome to Spotify Web API, Please report any errors to @beru2003 on Twi
 
 
 
-const AuthorizeUser = async (code) => {
+const AuthorizeUser = async (authCode) => {
 
     // Make request data
     let headerData = {
@@ -28,7 +28,7 @@ const AuthorizeUser = async (code) => {
     };
 
     // Fetch access token
-    let AccessTokenRequest = await axios.post('https://accounts.spotify.com/api/token', `grant_type=authorization_code&code=${code}&redirect_uri=${redirectUri}`, headerData);
+    let AccessTokenRequest = await axios.post('https://accounts.spotify.com/api/token', `grant_type=authorization_code&code=${authCode}&redirect_uri=${redirectUri}`, headerData);
 
     // Store user information and store in localStorage
     const accessToken = {
@@ -44,7 +44,7 @@ const AuthorizeUser = async (code) => {
         components = {
             scope:  AccessTokenRequest.data.scope,
             token_type: AccessTokenRequest.data['token_type'],
-            authCode: code
+            authCode: authCode
         };
     
         localStorage.setItem('accessToken', JSON.stringify(accessToken));
@@ -102,15 +102,15 @@ const OAuthFlow = async () => {
     try {
 
         if (!authCode && (rsToken && acToken && comps)) {
-            CheckComponents();
+            await CheckComponents();
         }
 
         else if (authCode && (rsToken && acToken && comps)) {
-            CheckComponents();
+            await CheckComponents();
         }
 
         else if (authCode && (!rsToken && !acToken && !comps)) {
-            AuthorizeUser(authCode);
+            await AuthorizeUser(authCode);
         }
 
         else {
@@ -135,7 +135,7 @@ const LoadUser = async (authCode) => {
                 Authorization: `Bearer ${acToken.value}`
             }
         };
-
+        
     const CurrentUserProfile = await axios.get('https://api.spotify.com/v1/me', headerData);
     userStruct.CurrentUserProfile = CurrentUserProfile.data;
 
@@ -165,6 +165,8 @@ const LoadContent = async (authCode) => {
         // Create new element for each album
         const albumImage = document.createElement('img');
         albumImage.src = item.images[0].url;
+        albumImage.style.width = '125px';
+        albumImage.style.padding = '10px';
         document.querySelector(`#albums`).appendChild(albumImage);
     };
 
@@ -174,6 +176,14 @@ const LoadContent = async (authCode) => {
 };
 
 
+document.getElementById('navBarLogoutContainer').addEventListener('click', () => {
+    localStorage.clear();
+    const rt = redirectUri.split('//')[1].split('/');
+    window.location.href = `http://${rt[0]}/${rt[1]}/${rt[2]}`; // Redirect user back to root
+});
+
+
+// Start the OAuth 2.0 flow
 OAuthFlow();
 
 export { userStruct };

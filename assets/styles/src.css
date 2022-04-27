@@ -33,20 +33,45 @@ html, body {
     transition: all 0s;
 }
 
+#navBarIconContainer {
+    display: inline-block;
+    margin-left: 10px;
+}
+
 #navBarIcon {
     margin-top: 8px;
     width: 40px;
     filter: brightness(0) invert(1);
 }
 
-#navBarIconContainer {
+#navBarLinksContainer {
     display: inline-block;
-    margin-left: 10px;
+}
+
+#navBarPlaylist {
+    display: inline-block;
+    margin-left: 20px;
+    color: white;
+    font-family: "Neue Haas Grotesk Display", "Destiny Symbols", Segoe-MDL, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", NotoColorEmoji, "Segoe UI Symbol", "Android Emoji", EmojiSymbols;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+#navBarUserProfile {
+    display: inline-block;
+    margin-left: 20px;
+    color: white;
+    font-family: "Neue Haas Grotesk Display", "Destiny Symbols", Segoe-MDL, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", NotoColorEmoji, "Segoe UI Symbol", "Android Emoji", EmojiSymbols;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
 }
 
 #navBarLogoutContainer {
     position: absolute;
-    margin-top: -34px;
+    display: inline-block;
+    margin-top: 17px;
     right: 1%;
     cursor: pointer;
 }
