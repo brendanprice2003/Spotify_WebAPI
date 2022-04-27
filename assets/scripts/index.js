@@ -4,6 +4,7 @@ var log = console.log.bind(console),
     clientSecret = '906aa4ec17d34b918f94e2df777b9c50',
     clientId = 'da326fb785c346fd89d40c226a2aac04',
     baseURI = `https://accounts.spotify.com/authorize?`,
+    redirectUri = `http://localhost/Spotify_WebAPI/assets/user`,
     redirectHeaders = {
         'response_type': 'code',
         'client_id': clientId,
