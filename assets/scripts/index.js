@@ -6,9 +6,9 @@ var log = console.log.bind(console),
     baseURI = `https://accounts.spotify.com/authorize?`,
     redirectHeaders = {
         'response_type': 'code',
-        'client_id': 'da326fb785c346fd89d40c226a2aac04',
-        'scope': 'user-read-recently-played', // Multiple
-        'redirect_uri': 'http://localhost/Spotify_WebAPI/assets/user'
+        'client_id': clientId,
+        'scope': 'user-read-recently-played', // Multiple (,) ?
+        'redirect_uri': redirectUri
     };
 
 // Custom console log
