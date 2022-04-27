@@ -1,8 +1,27 @@
-body, html {
-    padding: 0;
-    margin: 0;
+/**
+ * #.# user.html Style
+ *
+ * Style for user.html, does not contain media queries
+ */
 
-    background-color: rgb(51, 38, 54);
+#mainContainer {
+    position: absolute;
+    margin: auto;
+    margin-top: 60px;
+    z-index: 1;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    left: 0;
+    right: 0;
+}
+
+h2 {
+    padding-bottom: 0px;
+    text-transform: uppercase;
     color: white;
     font-family: "Neue Haas Grotesk Display", "Destiny Symbols", Segoe-MDL, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", NotoColorEmoji, "Segoe UI Symbol", "Android Emoji", EmojiSymbols;
+    font-size: 15px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
 }

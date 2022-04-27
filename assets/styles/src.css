@@ -1,0 +1,216 @@
+/**
+ * #.# Global style
+ *
+ * Global style for all HTML pages
+ */
+
+html, body {
+    background-color: #22272e;
+}
+
+.elBlur {
+    -webkit-filter: blur(1.5px);
+    -moz-filter: blur(1.5px);
+    -o-filter: blur(1.5px);
+    -ms-filter: blur(1.5px);
+    filter: blur(1.5px);
+}
+
+
+/* Navbar */
+#navBarContainer {
+    position: fixed;
+    margin-left: -8px;
+    z-index: 2;
+    top: 0;
+    height: 55px;
+    width: 100vw;
+    background-color: #202020;
+}
+
+.navBarIconAnim {
+    animation: LoadAnim 1.5s ease 0s infinite normal none;
+    transition: all 0s;
+}
+
+#navBarIcon {
+    margin-top: 8px;
+    width: 40px;
+    filter: brightness(0) invert(1);
+}
+
+#navBarIconContainer {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+#navBarLogoutContainer {
+    position: absolute;
+    margin-top: -34px;
+    right: 1%;
+    cursor: pointer;
+}
+
+#navBarLogout {
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    width: auto;
+    border: 1px solid gray;
+    border-radius: 4px;
+    color: gray;
+    font-family: "Neue Haas Grotesk Display", "Destiny Symbols", Segoe-MDL, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", NotoColorEmoji, "Segoe UI Symbol", "Android Emoji", EmojiSymbols;
+    font-size: 15px;
+}
+
+
+/* Loadbar */
+#loadBarContainer {
+    display: inline-block;
+    position: fixed;
+    margin-top: 56px;
+}
+#slider{
+    position: absolute;
+    margin-top: -21px;
+    margin-left: -10px;
+    width: 103vw;
+    height: 3px;
+    overflow-x: hidden;
+}
+.line{
+    position: absolute;
+    width: 103vw;
+    height: 5px;
+    background: #4a8df8;
+    opacity: 0.4;
+    overflow-x: hidden;
+}
+.subline{
+    position: absolute;
+    height: 5px;
+    background: #4a8df8;
+    overflow-x: hidden;
+}
+.inc{
+    animation: increase 2s infinite;
+}
+.dec{
+    animation: decrease 2s 0.5s infinite;
+}
+@keyframes increase {
+    from { left: -5%; width: 5%; }
+    to { left: 130%; width: 100%; }
+}
+@keyframes decrease {
+    from { left: -80%; width: 80%; }
+    to { left: 110%; width: 10%; }
+}
+
+
+/* Onload Animation */
+.fade-in {
+    animation-name: FadeIn;
+    animation-duration: 0.1s;
+    transition-timing-function: linear;
+}
+@keyframes FadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@-moz-keyframes FadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@-webkit-keyframes FadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@-o-keyframes FadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@-ms-keyframes FadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+
+/* Logo animation */
+@keyframes LoadAnim {
+    0.0% {}
+
+    13.25% {
+        transform: translate(0px, -10px) rotate(-10deg);
+    }
+
+    30.21% {
+        transform: translate(0px, 0px);
+    }
+
+    47.7% {
+        transform: translate(0px, -10px) rotate(10deg);
+    }
+
+    64.66% {
+        transform: translate(0px, 0px);
+    }
+
+    81.62% {
+        transform: translate(0px, -10px);
+    }
+
+    98% {
+        transform: translate(0px, 0px);
+    }
+}
+
+
+/* Scrollbar */
+::-webkit-scrollbar { /* Width */
+    width: 7px;
+}
+::-webkit-scrollbar-track { /* Track */
+    background: none;
+}
+::-webkit-scrollbar-thumb { /* Handle */
+    background: rgb(116, 116, 116); 
+    border-radius: 12px;
+}
+::-webkit-scrollbar-thumb:hover { /* Handle on hover */
+    background: #555;
+}
+::-webkit-scrollbar { /* Temporary? */
+    display: none;
+}
+
+
+/* misc */
+hr.titleBreaker {
+    display: absolute;
+    opacity: 20%;
+    color: #555;
+    border: 1px solid grey;
+    border-radius: 20px;
+}
