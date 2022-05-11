@@ -1,4 +1,4 @@
-import { userStruct } from './user.js';
+import { userStruct } from '../user.js';
 
 // Expose necessary variables to console
 $(document).ready(function () {

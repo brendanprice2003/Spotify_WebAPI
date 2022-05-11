@@ -16,52 +16,91 @@ html, body {
     filter: blur(1.5px);
 }
 
-
 /* Navbar */
 #navBarContainer {
     position: fixed;
     margin-left: -8px;
-    z-index: 2;
     top: 0;
-    height: 55px;
+    height: 45px;
     width: 100vw;
     background-color: #202020;
+    z-index: 3;
 }
-
-.navBarIconAnim {
-    animation: LoadAnim 1.5s ease 0s infinite normal none;
-    transition: all 0s;
+#navBarIconContainer {
+    position: absolute;
+    display: inline-block;
 }
-
 #navBarIcon {
-    margin-top: 8px;
-    width: 40px;
+    margin-top: 5px;
+    margin-left: 5px;
+    width: 35px;
     filter: brightness(0) invert(1);
 }
-
-#navBarIconContainer {
-    display: inline-block;
-    margin-left: 10px;
-}
-
 #navBarLogoutContainer {
     position: absolute;
-    margin-top: -34px;
+    display: inline-block;
+    margin-top: 11px;
     right: 1%;
     cursor: pointer;
 }
-
 #navBarLogout {
     padding-left: 8px;
     padding-right: 8px;
     padding-top: 1px;
-    padding-bottom: 1px;
-    width: auto;
+    padding-bottom: 2px;
     border: 1px solid gray;
     border-radius: 4px;
     color: gray;
     font-family: "Neue Haas Grotesk Display", "Destiny Symbols", Segoe-MDL, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", NotoColorEmoji, "Segoe UI Symbol", "Android Emoji", EmojiSymbols;
     font-size: 15px;
+    user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+    transition: 0.25s;
+}
+#navBarLogout:hover {
+    color: white;
+    border-color: white;
+    transition: 0.25s;
+}
+.navBarIconAnim {
+    animation: LoadAnim 1.5s ease 0s infinite normal none;
+    transition: all 0s;
+}
+#navBarButtonsContainer {
+    position: absolute;
+    display: inline-block;
+    margin-top: 12px;
+    margin-left: 40px;
+}
+#navBarButtonsContainer > div {
+    display: inline-block;
+    margin-left: 20px;
+    color: gray;
+    font-family: "Neue Haas Grotesk Display", "Destiny Symbols", Segoe-MDL, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", NotoColorEmoji, "Segoe UI Symbol", "Android Emoji", EmojiSymbols;
+    font-size: 18px;
+    cursor: pointer;
+    transition: 0.25s;
+}
+#navBarButtonsContainer > div:hover {
+    color: white;
+    transition: 0.25s;
+}
+#settingsIcon {
+    position: absolute;
+    display: inline-block;
+    margin-top: 1px;
+    margin-left: 20px;
+    filter: invert(0.5);
+    width: 18px;
+    cursor: pointer;
+    transition: 0.25s;
+}
+#settingsIcon:hover {
+    filter: invert(1);
+    transition: 0.25s;
 }
 
 

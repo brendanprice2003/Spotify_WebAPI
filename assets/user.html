@@ -2,15 +2,14 @@
 
 <head>
     <link rel="stylesheet" href="./styles/src.css">
-    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="./styles/user.css">
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script type="module" src="scripts/utils/browser.js"></script>
     <script type="module" src="scripts/user.js"></script>
-    <script type="module" src="scripts/browser.js"></script>
 
     <link rel="shortcut icon" href="#">
-
     <title>Spotify Web API</title>
 </head>
 
@@ -19,13 +18,37 @@
         <div id="navBarIconContainer">
             <img id="navBarIcon" src="./ico/logo.png">
         </div>
+
+        <div id="navBarButtonsContainer">
+            <div id="btnMoodBoard">
+                MoodBoard
+            </div>
+            <div id="btnPlaylists">
+                Playlists
+            </div>
+            <div id="btnUser">
+                
+            </div>
+            <img id="settingsIcon" src="../assets/ico/settings.png">
+        </div>
+
         <div id="navBarLogoutContainer">
             <div id="navBarLogout">Log Out</div>
         </div>
     </div>
 
     <div id="mainContainer">
-        <h2>Spotify Web API</h2>
-        <div id="albums"></div>
+        <div id="moodBoard">
+            <div id="items"></div>
+        </div>
+        <div id="playlists">
+
+        </div>
+        <div id="user">
+
+        </div>
+        <div id="settings">
+
+        </div>
     </div>
 </body>

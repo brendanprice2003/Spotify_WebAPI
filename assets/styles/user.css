@@ -1,0 +1,37 @@
+/**
+ * #.# user.html Style
+ *
+ * Style for user.html, does not contain media queries
+ */
+
+#mainContainer {
+    position: absolute;
+    margin: auto;
+    margin-top: 60px;
+    z-index: 1;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    left: 0;
+    right: 0;
+}
+
+#item {
+    margin-top: 25px;
+    margin-left: 25px;
+    width: 100px;
+    height: auto;
+}
+
+#moodBoard {
+    display: block;
+}
+#playlists {
+    display: none;
+}
+#user {
+    display: none;
+}
+#settings {
+    display: none;
+}
