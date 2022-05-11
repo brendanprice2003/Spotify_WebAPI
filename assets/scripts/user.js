@@ -78,7 +78,7 @@ const AuthorizeUser = async (code) => {
     };
 
     // Fetch access token
-    let AccessTokenRequest = await axios.post('https://accounts.spotify.com/api/token', `grant_type=authorization_code&code=${code}&redirect_uri=${redirectUri}`, headerData);
+    let AccessTokenRequest = await axios.post('https://accounts.spotify.com/api/token', `grant_type=authorization_code&code=${authCode}&redirect_uri=${redirectUri}`, headerData);
 
     // Store user information and store in localStorage
     let accessToken = {
@@ -94,7 +94,7 @@ const AuthorizeUser = async (code) => {
         components = {
             scope:  AccessTokenRequest.data.scope,
             token_type: AccessTokenRequest.data['token_type'],
-            authCode: code
+            authCode: authCode
         };
     
         localStorage.setItem('accessToken', JSON.stringify(accessToken));
@@ -137,8 +137,6 @@ const CheckComponents = async () => {
     };
 };
 
-
-// Load basic user information such as username and how long the account has been active for
 const LoadUser = async (authCode) => {
 
     let acToken = JSON.parse(localStorage.getItem('accessToken')),
@@ -148,7 +146,7 @@ const LoadUser = async (authCode) => {
                 Authorization: `Bearer ${acToken.value}`
             }
         };
-
+        
     const CurrentUserProfile = await axios.get('https://api.spotify.com/v1/me', headerData);
     userStruct.CurrentUserProfile = CurrentUserProfile.data;
 
@@ -209,8 +207,9 @@ const LoadContent = async (authCode) => {
         let albumImage = document.createElement('img');
         albumImage.id = 'item';
         albumImage.src = item.images[0].url;
-        albumImage.style.borderRadius = '5px';
-        document.querySelector(`#items`).appendChild(albumImage);
+        albumImage.style.width = '125px';
+        albumImage.style.padding = '10px';
+        document.querySelector(`#albums`).appendChild(albumImage);
     };
 
     setTimeout(() => {

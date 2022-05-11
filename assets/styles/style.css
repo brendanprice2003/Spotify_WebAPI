@@ -1,0 +1,45 @@
+/**
+ * #.# user.html Style
+ *
+ * Style for user.html, does not contain media queries
+ */
+
+#mainContainer {
+    position: absolute;
+    margin: auto;
+    margin-top: 60px;
+    z-index: 1;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    left: 0;
+    right: 0;
+}
+
+#btnAuthorize {
+    margin-top: 10px;
+    padding: 8px;
+    background-color: rgb(120, 46, 115);
+    border: 1px solid rgb(137, 83, 133);
+    border-radius: 5px;
+    color: white;
+    font-family: "Neue Haas Grotesk Display", "Destiny Symbols", Segoe-MDL, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", NotoColorEmoji, "Segoe UI Symbol", "Android Emoji", EmojiSymbols;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+#albums {
+    text-align: center;
+    align-items: left;
+    justify-content: left;
+}
+
+h2 {
+    padding-bottom: 0px;
+    text-transform: uppercase;
+    color: white;
+    font-family: "Neue Haas Grotesk Display", "Destiny Symbols", Segoe-MDL, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", NotoColorEmoji, "Segoe UI Symbol", "Android Emoji", EmojiSymbols;
+    font-size: 15px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
