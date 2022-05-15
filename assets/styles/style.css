@@ -28,12 +28,6 @@
     cursor: pointer;
 }
 
-#albums {
-    text-align: center;
-    align-items: left;
-    justify-content: left;
-}
-
 h2 {
     padding-bottom: 0px;
     text-transform: uppercase;

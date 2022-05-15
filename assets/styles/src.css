@@ -284,3 +284,11 @@ hr.titleBreaker {
     border: 1px solid grey;
     border-radius: 20px;
 }
+
+hr.trackBreaker {
+    display: absolute;
+    /* opacity: 0%; */
+    color: rgb(57, 57, 57);
+    border: 1px solid rgb(57, 57, 57);
+    border-radius: 20px;
+}

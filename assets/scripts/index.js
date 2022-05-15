@@ -30,7 +30,7 @@ document.getElementById('btnAuthorize').addEventListener('click', () => {
     localStorage.setItem('stateKey', state);
     var scope = 'user-read-private user-read-email user-top-read';
 
-    url += '?response_type=token';
+    url += '?response_type=code';
     url += '&client_id=' + encodeURIComponent(clientId);
     url += '&scope=' + encodeURIComponent(scope);
     url += '&redirect_uri=' + encodeURIComponent(redirectUri);

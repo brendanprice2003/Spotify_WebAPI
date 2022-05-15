@@ -19,8 +19,35 @@
 #item {
     margin-top: 25px;
     margin-left: 25px;
-    width: 100px;
+    max-width: 100px;
+    max-height: 100px;
+    padding: 10px;
+    border-radius: 15px;
     height: auto;
+}
+
+#playlist {
+    margin-top: 10px;
+    margin-left: 10px;
+    max-width: 300px;
+    max-height: 300px;
+    padding: 10px;
+    border-radius: 15px;
+    height: auto;
+    cursor: pointer;
+}
+
+#track {
+    margin-top: 10px;
+    font-size: 13px;
+    font-family: "Neue Haas Grotesk Display", "Destiny Symbols", Segoe-MDL, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", NotoColorEmoji, "Segoe UI Symbol", "Android Emoji", EmojiSymbols;
+    color: white;
+}
+
+#playlistContent {
+    margin-left: 63px;
+    width: 75%;
+    text-align: left;
 }
 
 #moodBoard {

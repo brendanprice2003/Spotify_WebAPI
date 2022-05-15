@@ -7,15 +7,16 @@ import { InitializeEvents } from './utils/events.js';
 
 // Globals
 var log = console.log.bind(console),
+    authCode,
     clientId = 'da326fb785c346fd89d40c226a2aac04',
     clientSecret = 'c9a854c9f850480bbc07942a5aec2451',
     redirectUri = `http://127.0.0.1:5500/assets/user.html`,
-    baseUri = `http://127.0.0.1:5500/assets`,
-    urlParams = new URLSearchParams(window.location.search),
+    baseUri = `http://127.0.0.1:5500/assets/`;
+
+var urlParams = new URLSearchParams(window.location.search),
     navbarIcon = document.getElementById('navBarIcon'),
     localStorage = window.localStorage,
     userStruct = {};
-
     navbarIcon.classList.add('navBarIconAnim'); // Start animation
 
 
@@ -23,13 +24,16 @@ var log = console.log.bind(console),
 userStruct.objs = {};
 userStruct.objs.currView = document.getElementById('moodBoard'); // Default
 
+
 // OAuth 2.0 flow
 const OAuthFlow = async () => {
 
-    let rsToken = JSON.parse(localStorage.getItem('refreshToken')),
+    var rsToken = JSON.parse(localStorage.getItem('refreshToken')),
         acToken = JSON.parse(localStorage.getItem('accessToken')),
-        comps = JSON.parse(localStorage.getItem('components')),
-        authCode = urlParams.get('code'); // ONLY place where authCode is to be fetched from
+        comps = JSON.parse(localStorage.getItem('components'));
+    
+        // ONLY place where authCode is to be fetched from
+        authCode = urlParams.get('code');
 
         // Clean URL
         window.history.pushState({}, document.title, window.location.pathname);
@@ -67,7 +71,7 @@ const OAuthFlow = async () => {
 
 
 // Get response from Spotify API that contains access key and refresh token
-const AuthorizeUser = async (code) => {
+const AuthorizeUser = async (authCode) => {
 
     // Make request data
     let headerData = {
@@ -137,6 +141,8 @@ const CheckComponents = async () => {
     };
 };
 
+
+// Load basic user information
 const LoadUser = async (authCode) => {
 
     let acToken = JSON.parse(localStorage.getItem('accessToken')),
@@ -158,7 +164,7 @@ const LoadUser = async (authCode) => {
 
 
 // Load user content like user playlists and favourite tracks
-const LoadContent = async (authCode) => {
+const LoadContent = async () => {
 
     let acToken = JSON.parse(localStorage.getItem('accessToken')),
         headerData = {
@@ -172,10 +178,12 @@ const LoadContent = async (authCode) => {
     let UserInformation = await axios.get(`https://api.spotify.com/v1/me`, headerData);
     document.getElementById('btnUser').innerHTML = `${UserInformation.data.display_name}`;
 
-    let navBarIcon = document.getElementById('navBarIcon');
-        navBarIcon.src = UserInformation.data.images[0].url;
-        navBarIcon.style.filter = 'invert(0)';
-        navBarIcon.style.borderRadius = '50px';
+    if (UserInformation.data.images[0].url) {
+        let navBarIcon = document.getElementById('navBarIcon');
+            navBarIcon.src = UserInformation.data.images[0].url;
+            navBarIcon.style.filter = 'invert(0)';
+            navBarIcon.style.borderRadius = '50px';
+    };
 
     // Get user playlists
     let UserPlaylists = await axios.get(`https://api.spotify.com/v1/users/${userStruct.CurrentUserProfile.id}/playlists`, headerData);
@@ -187,29 +195,34 @@ const LoadContent = async (authCode) => {
     // Create new element for each affinitised artist
     for (let AffinityArtist of ArtistAffinity.data.items) {
         let artistImage = document.createElement('img');
-        artistImage.id = 'item';
-        artistImage.src = AffinityArtist.images[0].url;
-        artistImage.style.borderRadius = '5px';
-        document.querySelector('#items').appendChild(artistImage);
+            artistImage.id = 'item';
+            artistImage.src = AffinityArtist.images[0].url;
+            document.querySelector('#items').appendChild(artistImage);
     };
 
     // Create new element for each affinitised track
     for (let AffinityTrack of TracksAffinity.data.items) {
         let trackImage = document.createElement('img');
-        trackImage.id = 'item';
-        trackImage.src = AffinityTrack.album.images[0].url;
-        trackImage.style.borderRadius = '5px';
-        document.querySelector('#items').appendChild(trackImage);
+            trackImage.id = 'item';
+            trackImage.src = AffinityTrack.album.images[0].url;
+            document.querySelector('#items').appendChild(trackImage);
     };
 
     // Create new element for each album
     for (let item of UserPlaylists.data.items) {
-        let albumImage = document.createElement('img');
-        albumImage.id = 'item';
-        albumImage.src = item.images[0].url;
-        albumImage.style.width = '125px';
-        albumImage.style.padding = '10px';
-        document.querySelector(`#albums`).appendChild(albumImage);
+
+        let albumImageForMoodBoard = document.createElement('img');
+            albumImageForMoodBoard.id = 'item';
+            albumImageForMoodBoard.src = item.images[0].url;
+            document.querySelector(`#items`).appendChild(albumImageForMoodBoard);
+
+        let albumImageForPlaylists = document.createElement('img');
+            albumImageForPlaylists.id = 'playlist';
+            albumImageForPlaylists.src = item.images[0].url;
+            document.querySelector(`#playlistGrid`).appendChild(albumImageForPlaylists);
+            albumImageForPlaylists.addEventListener('click', () => {
+                LoadPlaylistContent(item, headerData);
+            });
     };
 
     setTimeout(() => {
@@ -217,8 +230,40 @@ const LoadContent = async (authCode) => {
     }, 1200);
 };
 
+
+// Load playlist content
+const LoadPlaylistContent = async (playlist, headerData) => {
+
+    // Toggle the view to show the resptictive playlists' content instead of grid of playlists
+    document.getElementById('playlistGrid').style.display = 'none';
+    document.getElementById('playlistContent').style.display = 'block';
+
+    // Get the playlist
+    let PlaylistTracks = await axios.get(`${playlist.tracks.href}`, headerData),
+        rt = PlaylistTracks.data.items;
+
+    for (let item in rt) {
+
+        let track = document.createElement('div'),
+            topSeperator = document.createElement('hr'),
+            seperator = document.createElement('hr');
+            
+        if (item === '0') {
+            topSeperator.classList.add('trackBreaker');
+        };
+
+        track.id = 'track';
+        track.innerHTML = rt[item].track.name;
+
+        track.appendChild(topSeperator);
+        document.querySelector('#playlistContent').appendChild(track);
+        track.appendChild(seperator);
+    };
+};
+
+
 (async () => {
-    
+
     // OAuth Flow
     await OAuthFlow();
 
@@ -230,4 +275,4 @@ const LoadContent = async (authCode) => {
     console.error(error);
 });
 
-export { userStruct, baseUri };
+export { userStruct, baseUri, authCode };
